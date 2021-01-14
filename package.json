@@ -1,5 +1,5 @@
 {
-  "name": "to-do-list",
+  "name": "to-do-iist",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +9,8 @@
     "firebase": "^8.2.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
@@ -35,5 +37,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/modesty0310/to-do-list-react.git",
+  "author": "modesty0310 <rlatprua4@gmail.com>",
+  "license": "MIT"
 }
