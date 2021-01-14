@@ -1,0 +1,39 @@
+.title{
+    font-weight: 700;
+}
+
+.input_box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input{
+    background: none;
+    margin: 20px 0;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    transition: .3s;
+    font-size: 20px;
+}
+
+.input:focus {
+    width: 280px;
+    border-color: #2ecc71;
+}
+
+.add_btn i{
+    color: #3498db;
+    font-size: 28px;
+    margin-left: 30px;
+    transition: .3s;
+
+}
+
+.add_btn i:hover{
+    color: #2ecc71;
+}

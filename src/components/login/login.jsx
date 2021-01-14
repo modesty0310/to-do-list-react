@@ -9,12 +9,15 @@ const Login = () => {
     };
 
     return (
-        <form action="index.html" className={styles.box} method="POST">
-            <h1>Login</h1>
-            <input type="text" name="" placeholder="UserName" />
-            <input type="password" placeholder="Password" />
-            <input type="submit" value="Login" onClick={onLogin}/>
-        </form>
+        <section className={styles.containner}>
+            <form action="index.html" className={styles.box} method="POST">
+                <h1>Login</h1>
+                <input type="text" name="" placeholder="UserName" />
+                <input type="password" placeholder="Password" />
+                <input type="submit" value="Login" onClick={onLogin}/>
+            </form>
+        </section>
+
     )
 }
 
