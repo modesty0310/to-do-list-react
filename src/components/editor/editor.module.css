@@ -1,0 +1,37 @@
+.checked{
+    text-decoration: line-through;
+}
+
+.hide{
+    display: none;
+}
+
+.item{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    font-size: 20px;
+    border-bottom: 2px solid white;
+    width: 90%;
+    margin: auto;
+}
+
+.item_name{
+    cursor: pointer;
+    transition: .3s;
+}
+
+.item_name:hover{
+    color: #3498db;
+    transform: scale(1.1);
+}
+
+.item_delete i{
+    font-size: 20px;
+    transition: .3s;
+}
+
+.item_delete i:hover{
+    color: #3498db;
+    transform: scale(1.2);
+}

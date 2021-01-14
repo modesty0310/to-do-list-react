@@ -16,13 +16,20 @@ const List = () => {
         });
     };
 
+    const onDelete = (key) => {
+        setLists(lists => {
+            const updated = lists.filter(item=> item.id !== key);
+            return updated;
+        });
+    }
+
     return (
     <section className={styles.list}>
         <Header onAdd={onAdd}/>
         <ul className={styles.items}>
             {
                 lists.map(list => (
-                    <Editor key={list.id} text={list.text}/> 
+                    <Editor list={list} text={list.text} onDelete={onDelete}/> 
                 ))
             }
             
