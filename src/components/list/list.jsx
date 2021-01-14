@@ -1,20 +1,33 @@
 import React from 'react';
+import { useState } from 'react';
+import Editor from '../editor/editor';
+import Footer from '../footer/footer';
 import Header from '../header/header';
 import styles from './list.module.css'
 
 
 const List = () => {
+    const [lists, setLists] = useState([]);
 
+    const onAdd = (text) => {
+        setLists(lists => {
+            const updated = [...lists, {id: Date.now(), text}];
+            return updated;
+        });
+    };
 
     return (
     <section className={styles.list}>
-        <Header />
-        <ul className="items">
+        <Header onAdd={onAdd}/>
+        <ul className={styles.items}>
+            {
+                lists.map(list => (
+                    <Editor key={list.id} text={list.text}/> 
+                ))
+            }
+            
         </ul>
-        <footer className="btn-area">
-            <button className="delete-chk-btn">한 일 지우기</button>
-            <button className="delete-all-btn">모두 지우기</button>
-        </footer>
+        <Footer />
     </section>
     );
 };

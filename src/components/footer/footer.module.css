@@ -1,0 +1,15 @@
+.btn_area{
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+
+.btn_area button{
+    font-size: 20px;
+    transition: .5s;
+}
+
+.btn_area button:hover{
+    color: #3498db;
+    transform: scale(1.1);
+}
