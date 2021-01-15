@@ -2,8 +2,16 @@
     text-decoration: line-through;
 }
 
+.unchecked{
+    text-decoration: none;
+}
+
 .hide{
     display: none;
+}
+
+.show{
+    display: inline;
 }
 
 .item{

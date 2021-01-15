@@ -9,27 +9,40 @@ import styles from './list.module.css'
 const List = () => {
     const [lists, setLists] = useState([]);
 
-    const onAdd = (text) => {
+    const onAdd = (list) => {
         setLists(lists => {
-            const updated = [...lists, {id: Date.now(), text}];
+            const updated = {...lists};
+            updated[list.id] = list;
             return updated;
         });
     };
 
-    const onDelete = (key) => {
+    const onDelete = (list) => {
         setLists(lists => {
-            const updated = lists.filter(item=> item.id !== key);
-            return updated;
+            const deleted = {...lists};
+            delete deleted[list.id]
+            return deleted;
         });
+    };
+
+    const onChecked = (list) => {
+        setLists(lists => {
+            const updated = {...lists};
+            console.log(!updated[list.id].checked);
+            updated[list.id].checked = !updated[list.id].checked;
+            console.log(updated[list.id].checked);
+            return updated;
+        })
+        
     }
 
     return (
     <section className={styles.list}>
-        <Header onAdd={onAdd}/>
+        <Header onAdd={onAdd} />
         <ul className={styles.items}>
             {
-                lists.map(list => (
-                    <Editor list={list} text={list.text} onDelete={onDelete}/> 
+                Object.keys(lists).map(key => (
+                    <Editor key={key} list={lists[key]} onDelete={onDelete} onAdd={onAdd}/> 
                 ))
             }
             

@@ -9,14 +9,23 @@ const Header = ({onAdd}) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        const text =  textRef.current.value || ""
-        onAdd(text);
+        const list = {
+            id: Date.now(), 
+            text: textRef.current.value || "", 
+            checked:false
+        };
+        onAdd(list);
+        textRef.current.reset();
     };
 
     const onEnter = e => {
         if(e.key === "Enter"){
-            const text =  textRef.current.value || ""
-            onAdd(text);
+            const list = {
+                id: Date.now(), 
+                text: textRef.current.value || "", 
+                checked:true
+            };
+            onAdd(list);
         };
     };
 
