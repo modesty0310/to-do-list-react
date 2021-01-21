@@ -10,13 +10,15 @@ const Header = ({onAdd}) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        const list = {
-            id: Date.now(), 
-            text: textRef.current.value || "", 
-            checked:false
-        };
-        onAdd(list);
-        formRef.current.reset();
+        if(textRef.current.value){
+            const list = {
+                id: Date.now(), 
+                text: textRef.current.value, 
+                checked:false
+            };
+            onAdd(list);
+            formRef.current.reset();
+        }
     };
 
     return (
