@@ -6,6 +6,7 @@ import styles from './header.module.css'
 
 const Header = ({onAdd}) => {
     const textRef = useRef();
+    const formRef = useRef();
 
     const onSubmit = e => {
         e.preventDefault();
@@ -15,27 +16,16 @@ const Header = ({onAdd}) => {
             checked:false
         };
         onAdd(list);
-        textRef.current.reset();
-    };
-
-    const onEnter = e => {
-        if(e.key === "Enter"){
-            const list = {
-                id: Date.now(), 
-                text: textRef.current.value || "", 
-                checked:true
-            };
-            onAdd(list);
-        };
+        formRef.current.reset();
     };
 
     return (
         <header>
             <h1 className={styles.title}>To Do list</h1>
-            <div className={styles.input_box}>
-                <input ref={textRef} type="text" className={styles.input} onKeyPress={onEnter}/>
+            <form ref={formRef} className={styles.input_box}>
+                <input ref={textRef} type="text" className={styles.input} />
                 <button className={styles.add_btn} onClick={onSubmit}><i className="fas fa-plus"></i></button>
-            </div>
+            </form>
         </header>
     );
 };

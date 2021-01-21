@@ -7,7 +7,7 @@ import styles from './list.module.css'
 
 
 const List = () => {
-    const [lists, setLists] = useState([]);
+    const [lists, setLists] = useState({});
 
     const onAdd = (list) => {
         setLists(lists => {
@@ -25,16 +25,22 @@ const List = () => {
         });
     };
 
-    const onChecked = (list) => {
+    const deleteAll = () => {
         setLists(lists => {
-            const updated = {...lists};
-            console.log(!updated[list.id].checked);
-            updated[list.id].checked = !updated[list.id].checked;
-            console.log(updated[list.id].checked);
+            const deleted = {};
+            return deleted;
+        });
+    };
+
+    const deleteChecked = () => {
+        const deletedChk = Object.keys(lists).filter(key => lists[key].checked === false)
+        console.log(deletedChk);
+        setLists(lists => {
+            const updated = {...deletedChk};
             return updated;
-        })
-        
-    }
+        });
+    };
+
 
     return (
     <section className={styles.list}>
@@ -47,7 +53,7 @@ const List = () => {
             }
             
         </ul>
-        <Footer />
+        <Footer deleteAll={deleteAll} deleteChecked={deleteChecked}/>
     </section>
     );
 };
