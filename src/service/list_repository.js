@@ -2,8 +2,8 @@ import {firebaseDatabase} from "./firebase";
 
 
 class ListRepository {
-  syncCards(userId, onUpdate) {
-    const ref = firebaseDatabase.ref(`${userId}/cards`);
+  syncLists(userId, onUpdate) {
+    const ref = firebaseDatabase.ref(`${userId}/lists`);
     ref.on('value', snapshot =>{
       const value = snapshot.val();
       value && onUpdate(value);
@@ -11,11 +11,14 @@ class ListRepository {
     return () => ref.off();
   };
 
-  saveCard(userId, card) {
-    firebaseDatabase.ref(`${userId}/cards/${card.id}`).set(card);
+  saveList(userId, list) {
+    firebaseDatabase.ref(`${userId}/lists/${list.id}`).set(list);
   };
-  removeCard(userId, card) {
-    firebaseDatabase.ref(`${userId}/cards/${card.id}`).remove();
+  removeList(userId, list) {
+    firebaseDatabase.ref(`${userId}/lists/${list.id}`).remove();
+  };
+  removeAll(userId) {
+    firebaseDatabase.ref(`${userId}/lists`).remove();
   };
 }
 

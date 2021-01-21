@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import Editor from '../editor/editor';
@@ -9,6 +10,8 @@ import styles from './list.module.css'
 
 const List = ({authService, listRepository}) => {
     const [lists, setLists] = useState({});
+    const [userId, setUserId] = useState();
+    const history = useHistory();
 
     const onAdd = (list) => {
         setLists(lists => {
@@ -16,6 +19,7 @@ const List = ({authService, listRepository}) => {
             updated[list.id] = list;
             return updated;
         });
+        listRepository.saveList(userId, list)
     };
 
     const onDelete = (list) => {
@@ -24,6 +28,7 @@ const List = ({authService, listRepository}) => {
             delete deleted[list.id]
             return deleted;
         });
+        listRepository.removeList(userId, list)
     };
 
     const deleteAll = () => {
@@ -31,6 +36,7 @@ const List = ({authService, listRepository}) => {
             const deleted = {};
             return deleted;
         });
+        listRepository.removeAll(userId)
     };
 
     const deleteChecked = () => {
@@ -42,10 +48,30 @@ const List = ({authService, listRepository}) => {
         });
     };
 
-    const history = useHistory();
+
     const onLogout = () => {
-        authService.logout();history.push("/");
+        authService.logout();
     };
+
+    useEffect(() => {
+        if(!userId){
+            return;
+        };
+        const sync = listRepository.syncLists(userId, lists => {
+            setLists(lists);
+        })
+        return () => sync();
+    }, [userId]);
+
+    useEffect(() => {
+        authService.onAuthChange((user) => {
+            if(user) {
+                setUserId(user.uid);
+            }else{
+                history.push('/');
+            }
+        });
+    });
 
 
     return (
