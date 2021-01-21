@@ -60,10 +60,3 @@
 .box input[type="submit"]:hover{
     background-color: #2ecc71;
 }
-
-.button {
-    width: 100%;
-    height: 2.5em;
-    font-size: 1.2rem;
-    border-radius: 1.2rem;
-}

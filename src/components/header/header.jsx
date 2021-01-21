@@ -4,7 +4,7 @@ import { useRef } from 'react';
 // import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import styles from './header.module.css'
 
-const Header = ({onAdd}) => {
+const Header = ({onAdd, onLogout}) => {
     const textRef = useRef();
     const formRef = useRef();
 
@@ -23,6 +23,7 @@ const Header = ({onAdd}) => {
 
     return (
         <header>
+            <button className={styles.logoutBtn} onClick={onLogout}>Logout</button>
             <h1 className={styles.title}>To Do list</h1>
             <form ref={formRef} className={styles.input_box}>
                 <input ref={textRef} type="text" className={styles.input} />

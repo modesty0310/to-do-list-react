@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
+import { useHistory } from 'react-router';
 import Editor from '../editor/editor';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import styles from './list.module.css'
 
 
-const List = () => {
+const List = ({authService, listRepository}) => {
     const [lists, setLists] = useState({});
 
     const onAdd = (list) => {
@@ -41,10 +42,15 @@ const List = () => {
         });
     };
 
+    const history = useHistory();
+    const onLogout = () => {
+        authService.logout();history.push("/");
+    };
+
 
     return (
     <section className={styles.list}>
-        <Header onAdd={onAdd} />
+        <Header onAdd={onAdd} onLogout={onLogout}/>
         <ul className={styles.items}>
             {
                 Object.keys(lists).map(key => (
