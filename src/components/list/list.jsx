@@ -40,12 +40,16 @@ const List = ({authService, listRepository}) => {
     };
 
     const deleteChecked = () => {
-        const deletedChk = Object.keys(lists).filter(key => lists[key].checked === false)
-        console.log(deletedChk);
+        const deletedChk = Object.keys(lists).filter(key => lists[key].checked === false);
+        const databaseDel = Object.keys(lists).filter(key => lists[key].checked !== false);
         setLists(lists => {
             const updated = {...deletedChk};
             return updated;
         });
+        for (const list of databaseDel) {
+            listRepository.removeChecked(userId, list);
+            console.log(list);
+        }
     };
 
 

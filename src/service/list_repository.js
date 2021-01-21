@@ -20,6 +20,9 @@ class ListRepository {
   removeAll(userId) {
     firebaseDatabase.ref(`${userId}/lists`).remove();
   };
+  removeChecked(userId, list) {
+    firebaseDatabase.ref(`${userId}/lists/${list}`).remove();
+  };
 }
 
 export default ListRepository;
