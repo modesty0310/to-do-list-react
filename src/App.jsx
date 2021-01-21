@@ -18,8 +18,8 @@ function App({authService, listRepository}) {
         <Route path="/list">
           <List authService={authService} listRepository={listRepository} />
         </Route>
-        <Route path="/signup" authService={authService}>
-          <SignUp />
+        <Route path="/signup" >
+          <SignUp authService={authService} />
         </Route>
       </Switch>
     </Router>

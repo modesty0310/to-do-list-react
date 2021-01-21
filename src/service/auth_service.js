@@ -32,6 +32,7 @@ class AuthService {
     return firebaseAuth.createUserWithEmailAndPassword(email, password)
   }
 
+
   signInWithEmailPassword(email, password) {
     // [START auth_signin_password]
     return firebaseAuth.signInWithEmailAndPassword(email, password)
